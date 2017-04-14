@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div class="big">
+		<span>abc</span>
+	</div>
+
+	<script type="x-template" id="temp">
+		<div id="active">
+			<div class="small">{{message}}</div>
+			<div class="sosmall">{{info}}</div>
+		</div>	
+	</script>
+	<script>
+		let data = {
+			message:'hello vue',
+			info:'hello ni hao a '
+		}
+			
+		var app = new Vue({
+			el:'.big',
+			data:data,
+			template:'#temp'   //使用script 标签id
+		})
+	</script>
+</body>
+</html>

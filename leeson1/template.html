@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div class="big">
+		<div id="active">
+			<div class="small">{{message}}</div>
+			<div class="sosmall">{{info}}</div>
+		</div>
+	</div>
+	<script>
+		let data = {
+			message:'hello vue',
+			info:'hello ni hao a '
+		}
+			//根元素只能有一个
+		//var str = '<div class="active"><div class="small">{{message}}</div></div>';
+		/*
+		解析报错
+		var str = '<div class="active"><div class="small">{{message}}</div></div><div>{{info}}</div>';*/
+
+
+		//ECMA6新的字符串定义方式	
+		var str = `
+			<div class="active">
+				<div class="small">{{message}}</div>
+				<div class="ss">{{info}}</div>
+			</div>
+		`;
+		var app = new Vue({
+			el:'#active',
+			data:data,
+			template:str   //优先级大于挂载的元素
+		})
+	</script>
+</body>
+</html>

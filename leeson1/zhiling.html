@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+	<style>
+		p{
+			width:120px;
+			border:1px solid #ccc;
+			height:30px;
+			line-height: 30px;
+		}	
+	</style>
+</head>
+<body>
+	<div class="big">
+		<!-- <p v-bind:goodsId='id'></p>   将data中的id解析-->
+		<p :goodsId='id'>{{message}}</p>  <!--简写-->
+	</div>
+
+	<div class="active">
+		<h1>{{1+1}}</h1>
+		<h1>{{true?'三元运算符':'false'}}</h1>
+		<h1 v-html='tag'></h1>    
+	</div>
+	<script>
+		//双向数据绑定
+		let data = {
+			message:'hello vue',
+			id:'0x001a30120',
+			tag:'<span>vue</span>'
+		}
+		var app1 = new Vue({
+			el:'.big',
+			data:data
+		})
+
+
+		var app2 = new Vue({
+			el:'.active',
+			data:data
+		})
+	</script>
+</body>
+</html>
