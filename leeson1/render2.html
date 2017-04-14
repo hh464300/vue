@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>render函数</title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+	<style>
+		ul{
+			list-style: none;
+			border:1px solid #ccc;
+			width:400px;
+		}
+		li{
+			line-height: 40px;
+			border:1px solid #ccc;
+		}
+		.active{
+			color:green;
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="big"></div>
+	<script>
+		/*
+			使用render创建元素
+				//参数一： 元素
+				//参数二： 属性
+				//参数三： 子元素
+
+			render(createElement){
+				
+			}
+		*/ 
+		let data = {
+			isAdd:true
+		}
+		var app = new Vue({
+			el:'.big',
+			data:data,
+			methods:{
+				toshow(){
+					console.log('事件触发');
+				}
+			},
+			render(createElement){
+				return createElement(
+					'ul',
+					{
+						class:{active:true},    //给ul 添加一个class   active
+						style:{fontSize:'25px'}, //给ul 添加一个style
+						attrs:{dsd:'大屌丝'},      //给ul 添加自定义属性
+					  //domProps:{innerHTML:'<li>dom操作</li>'}  使用ul节点的innerHTML方法
+					  	on:{click:this.toshow}    //给ul绑定事件  
+					},
+					[
+						createElement('li',{style:{fontSize:'30px',color:'red'}},'abc'),
+						createElement('li','bbb'),
+						createElement('li','ccc'),
+						createElement('li','ddd')
+					]
+				)
+			}
+		})
+	</script>
+</body>
+</html>

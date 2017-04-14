@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+	<style>
+		.active{
+			font-size: 30px;
+		}
+		.abc{
+			color:red;
+			line-height: 50px;
+			border:1px solid #ccc;
+			width:400px;
+		}
+	</style>
+</head>
+<body>
+	<div class="big" class="active" v-bind:class='{abc:isAdd}'>{{message}}</div>
+	<script>
+		let data = {
+			message:'hello nihao',
+			isAdd:true     //给元素添加class 需要使用data中的值进行判断  (数据驱动dom)
+		}
+
+		var app = new Vue({
+			el:'.big',
+			data:data
+		})
+	</script>
+</body>
+</html>

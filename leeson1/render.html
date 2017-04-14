@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>render函数</title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+	<style>
+		ul{
+			list-style: none;
+			border:1px solid #ccc;
+			width:400px;
+		}
+		li{
+			line-height: 40px;
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="big"></div>
+	<script>
+		/*
+			使用render创建元素
+				//参数一： 元素
+				//参数二： 属性
+				//参数三： 子元素
+
+			render(createElement){
+				
+			}
+		*/ 
+		var app = new Vue({
+			el:'.big',
+			render(createElement){
+				return createElement(
+					'ul',
+					[
+						createElement('li','abc'),
+						createElement('li','bbb'),
+						createElement('li','ccc'),
+						createElement('li','ddd')
+					]
+				)
+			}
+		})
+	</script>
+</body>
+</html>

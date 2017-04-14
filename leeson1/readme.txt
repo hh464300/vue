@@ -94,5 +94,49 @@
 					</script>
 					2. 在template中指定  template:'#temp'
 
+			给元素添加class的方式
+				<div class="big" class="active" v-bind:class='{abc:isAdd}'>{{message}}</div>
+				/*
+				*给元素添加class 需要使用data中的值进行判断  (数据驱动dom)
+				*添加的class 可以和直接设置的class共存
+				*/
+
+		reader 函数
+					//参数一： 元素
+					//参数二： 属性
+							class:{}   添加class
+							style:{}   添加style
+							attrs:{}   添加自定义属性
+							domProps:{}  元素节点的方法
+							on:{}        给元素绑定事件
+					//参数三： 子元素
+
+			el:'.big',
+			data:data,
+			methods:{
+				toshow(){
+					console.log('事件触发');
+				}
+			},
+			render(createElement){
+				return createElement(
+					'ul',
+					{
+						class:{active:true},    //给ul 添加一个class   active
+						style:{fontSize:'25px'}, //给ul 添加一个style
+						attrs:{dsd:'大屌丝'},      //给ul 添加自定义属性
+					  //domProps:{innerHTML:'<li>dom操作</li>'}  使用ul节点的innerHTML方法
+					  	on:{click:this.toshow}    //给ul绑定事件  
+					},
+					[
+						createElement('li','abc'),
+						createElement('li','bbb'),
+						createElement('li','ccc'),
+						createElement('li','ddd')
+					]
+				)
+			}
+
+
 
 
