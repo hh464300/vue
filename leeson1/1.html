@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+	<!--模板-->
+	 <div class="active">
+	 	<span v-on:click="show">{{message}}</span>
+	 </div>
+
+
+	 <script>
+	 	/*数据*/
+	 	let data = {
+	 		message:'hello world'
+	 	}
+	 	/*vm   视图模型   --代理data属性*/
+	 	var app = new Vue({
+	 		el:'.active',    //代理元素
+	 		data:data,		 //数据	
+	 		methods:{		//方法
+	 			show(){
+	 				console.log('新的方法');
+	 			}
+	 		}
+	 	})
+
+	 </script>
+</body>
+</html>
