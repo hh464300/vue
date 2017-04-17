@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+	<style>
+		.box{
+			width:300px;
+			height:200px;
+			background-color: pink;
+		}
+		.active{
+			border:5px solid #000;
+		}
+		li{
+			list-style: none;
+			line-height: 40px;
+			width:300px;
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" v-bind:class="{active:boxActive}">
+		{{message}}
+	</div>
+	<div class="big"></div>
+
+	<div class="small"></div>
+	
+	<hr>
+	<div class="bigbox"></div>
+	<script type="x-template" id="mytemp">
+		<ul>
+			<li>{{message}}</li>
+			<li>{{message}}</li>
+			<li>{{message}}</li>
+			<li>{{message}}</li>
+		</ul>	
+	</script>
+	<script>
+		var data = {
+			message:'hello world',
+			boxActive:true
+		}
+		var app = new Vue({
+			el:'.box',
+			data:data
+		})
+
+
+		var str = `
+		<ul>
+			<li>{{message}}</li>
+			<li>{{message}}</li>
+			<li>{{message}}</li>
+			<li>{{message}}</li>
+		</ul>
+		`;
+		var app1 = new Vue({
+			el:'.big',
+			data:data,
+			template:str
+		})
+
+		var app2 = new Vue({
+			el:'.small',
+			data:data,
+			template:'#mytemp'
+		})
+
+		var mydata = {
+			img:'../img/meinv01.jpg'
+		}
+		var app3 = new Vue({
+			el:'.bigbox',
+			data:mydata,
+			methods:{
+				show(){
+					console.log('我是触发的函数');
+				}
+			},
+			render(createElement){
+				return createElement(
+					'ul',
+					{
+						on:{
+							'click':this.show
+						}
+					},
+					[
+						createElement('li',{
+							class:{
+								active:true
+							},
+							style:{
+								backgroundColor:'red'
+							}
+						},'def'),
+						createElement('li','def'),
+						createElement('li','def'),
+						createElement('li','def'),
+						createElement('li','def'),
+						createElement('p','dd')
+					]
+					)
+			}
+		})
+	</script>
+</body>
+</html>
