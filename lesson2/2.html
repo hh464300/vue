@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/vue/dist/vue.js"></script>
+	<link rel="stylesheet" href="1.css">
+</head>
+<body>
+	<nav>
+		<div class="cen">任务计划列表</div>
+	</nav>
+	<div class="container">
+		<div class="main">
+			<!--如果传入参数 event对象获取不到  使用$event-->
+			<h1 v-on:click="show(1000,$event)">添加任务：</h1>
+			<!--给事件添加修饰符  （enter == 13）-->
+			<input 
+			type="text" 
+			placeholder="添加任务，回车执行"
+			v-on:keyup.13='addTodo' 
+			v-model="todo" 
+			/>
+		</div>
+		<div class="card" v-show="content.length">
+			<div class="left"><p>一个任务未完成</p></div>
+			<div class="right">
+				<div class="active">所有任务</div>
+				<div>未完成的任务</div>
+				<div>完成的任务</div>
+			</div>
+		</div>
+		<div class="alt" v-show="!content.length"><span>还没有添加任何任务</span></div>
+		<div class="foot">
+			<h3>任务列表：</h3>
+			<ul>
+				<!--item 代表value   key代表对象的索引-->
+				<li v-for="(item,key) in content" class="mylist">
+					<input type="checkbox" :id="item.myinput+key">
+					<label :for="item.myinput+key"></label>
+					<p>{{ item.title }}</p>
+					<p @click="delTodo(key)">X</p>   <!--将索引传入-->
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script src="./2.js"></script>	
+</body>
+</html>
